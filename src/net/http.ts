@@ -27,7 +27,7 @@ import {
 } from "../util";
 
 
-const ERR_RESPONSE = new Response(null, { status: 500 });
+const ERR_RESPONSE = Object.assign(new Response(null, { status: 500 }), { statusOk: false });
 
 
 namespace Http {
@@ -467,16 +467,16 @@ namespace Http {
     return false;
   }
 
-  export function createResponse(body?: BodyInit | null, options?: ResponseInit): Response {
+  export function createResponse(body?: BodyInit | null, options?: ResponseInit): Response & { readonly statusOk: boolean } {
     return new class extends Response {
-      public override readonly ok: boolean;
+      public readonly statusOk: boolean;
 
       public constructor() {
         super(body, options);
-        this.ok = false;
+        this.statusOk = false;
 
         if (typeof options?.status === "number") {
-          this.ok = (options.status / 100 | 0) === 2;
+          this.statusOk = (options.status / 100 | 0) === 2;
         }
       }
     };
