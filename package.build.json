@@ -1,6 +1,6 @@
 {
   "name": "std-crate",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.js",
   "repository": "https://github.com/gitlab-az1/std-crate.git",
   "license": "AGPL-3.0-only",

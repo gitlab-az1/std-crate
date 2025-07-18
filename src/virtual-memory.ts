@@ -25,6 +25,8 @@ export namespace BinaryLayout {
     public constructor();
     public constructor(s: uint_t);
     public constructor(s?: uint_t) {
+      console.warn("[ATTENTION] You're using a virtual memory layout for binary data... It's volatile and the implementation was not fully tested yet.");
+
       if(!s) {
         const a = checkVirtualAvailableSize();
 
